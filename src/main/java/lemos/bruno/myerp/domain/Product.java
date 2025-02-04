@@ -1,9 +1,6 @@
 package lemos.bruno.myerp.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,6 +30,9 @@ public class Product {
     private double stock;
     //quantidade no estoque, double por poder ser valor fracionado
 
+//    @OneToMany
+//    @JoinColumn(name = "product_id")
+//    private Supplier supplier;
 
 
 

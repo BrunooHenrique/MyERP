@@ -32,8 +32,5 @@ public class Supplier {
     //telefone do fornecedor
 
 
-    @OneToMany
-    @JoinColumn(name = "product_id")
-    private Product product;
 
 }
