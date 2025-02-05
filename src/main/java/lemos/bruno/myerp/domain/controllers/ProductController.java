@@ -21,19 +21,19 @@ public class ProductController {
 
 
     @Autowired
-    ProductRepository repository;
+    ProductRepository productRepository;
 
 
     @GetMapping
     public ResponseEntity getAll() {
-        List<Product> listProucts = repository.findAll();
+        List<Product> productList = productRepository.findAll();
         return ResponseEntity.status(HttpStatus.OK)
-                .body(listProucts);
+                .body(productList);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity getById(@PathVariable(value = "id") UUID id) {
-        Optional product = repository.findById(id);
+        Optional product = productRepository.findById(id);
 
         if (product.isEmpty()) { //Id inexistente
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
@@ -46,14 +46,14 @@ public class ProductController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity deleteById(@PathVariable(value = "id") UUID id) {
-        Optional<Product> product = repository.findById(id);
+        Optional<Product> product = productRepository.findById(id);
 
         if (product.isEmpty()) { //Id inexistente
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body("Product not found");
         }
         //Id válido
-        repository.delete(product.get());
+        productRepository.delete(product.get());
 
         return ResponseEntity.status(HttpStatus.OK)
                 .body("Product deleted");
@@ -63,7 +63,7 @@ public class ProductController {
 
     @PutMapping("/{id}")
     public ResponseEntity update(@PathVariable(value = "id") UUID id, @RequestBody ProductDto dto) {
-        Optional<Product> productOptional = repository.findById(id);
+        Optional<Product> productOptional = productRepository.findById(id);
 
         if (productOptional.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
@@ -86,13 +86,13 @@ public class ProductController {
         if (dto.stock()!= null)
             productModel.setStock(dto.stock());
 
-        return ResponseEntity.ok(repository.save(productModel));
+        return ResponseEntity.ok(productRepository.save(productModel));
     }
 
 
     @PutMapping("/add/{id}")
     public ResponseEntity addOrRemoveStock(@PathVariable(value = "id") UUID id, @RequestBody Double d) {
-        Optional<Product> productOptional = repository.findById(id);
+        Optional<Product> productOptional = productRepository.findById(id);
 
         if (productOptional.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
@@ -104,18 +104,18 @@ public class ProductController {
 
         productModel.updateStock(d);
 
-        return ResponseEntity.ok(repository.save(productModel));
+        return ResponseEntity.ok(productRepository.save(productModel));
     }
 
 
     @PostMapping
-    public ResponseEntity save(@RequestBody ProductDto dto) {
+    public ResponseEntity newProduct(@RequestBody ProductDto dto) {
 
         var product = new Product();
         BeanUtils.copyProperties(dto, product);
 
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(repository.save(product));
+                .body(productRepository.save(product));
     }
 
 }

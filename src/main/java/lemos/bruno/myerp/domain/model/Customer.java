@@ -13,10 +13,7 @@ import java.util.UUID;
 
 @Table(name = "customer")
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+
 public class Customer {
     @Id
     @GeneratedValue
@@ -26,11 +23,46 @@ public class Customer {
     private String name;
     //nome do cliente
     private String cpf;
-    //cpf do cliente
+    //cnpj do cliente
     private String address;
     //endereço do cliente
     private String phone;
     //telefone do cliente
 
 
+    public UUID getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 }
