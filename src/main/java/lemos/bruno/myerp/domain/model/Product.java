@@ -60,6 +60,6 @@ public class Product {
     }
 
     public void updateStock(Double amount){
-        this.setStock(this.getStock() + amount);
+        setStock(this.getStock() + amount);
     }
 }

@@ -90,7 +90,7 @@ public class ProductController {
     }
 
 
-    @PutMapping("/{id}")
+    @PutMapping("/add/{id}")
     public ResponseEntity addOrRemoveStock(@PathVariable(value = "id") UUID id, @RequestBody Double d) {
         Optional<Product> productOptional = repository.findById(id);
 
