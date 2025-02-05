@@ -1,10 +1,12 @@
 package lemos.bruno.myerp.repositories;
 
-import lemos.bruno.myerp.domain.Product;
+import lemos.bruno.myerp.domain.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
 
 public interface ProductRepository extends JpaRepository<Product, UUID> {
+
+
 
 }

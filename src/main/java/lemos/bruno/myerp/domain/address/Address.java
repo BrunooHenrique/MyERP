@@ -1,4 +1,4 @@
-package lemos.bruno.myerp.address;
+package lemos.bruno.myerp.domain.address;
 
 
 import jakarta.persistence.Entity;
@@ -21,5 +21,5 @@ public class Address {
     private String city;
     private String street;
     private String number;
-
+    private String zipCode;
 }

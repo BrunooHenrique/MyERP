@@ -1,4 +1,4 @@
-package lemos.bruno.myerp.domain;
+package lemos.bruno.myerp.domain.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,7 +9,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
 import java.util.UUID;
 
 @Table(name = "customer")
@@ -24,7 +23,6 @@ public class Customer {
     private UUID id;
     // Id gerado automaticamente
 
-
     private String name;
     //nome do cliente
     private String cpf;
@@ -33,7 +31,6 @@ public class Customer {
     //endereço do cliente
     private String phone;
     //telefone do cliente
-
 
 
 }
