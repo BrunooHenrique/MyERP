@@ -1,11 +1,21 @@
 package lemos.bruno.myerp.domain.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.math.BigDecimal;
+import java.util.List;
 import java.util.UUID;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "product")
-@Entity(name = "product")
+@Entity
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -17,10 +27,17 @@ public class Product {
     //nome do produto
     private String description;
     //descrição do produto
-    private Double price;
+    private BigDecimal price;
     //preço do produto
     private Double stock;
     //quantidade no estoque, double por poder ser valor fracionado
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "category_id")
+    private Category category;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Image> images;
 
 
     public UUID getId() {
@@ -35,11 +52,11 @@ public class Product {
         this.stock = stock;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

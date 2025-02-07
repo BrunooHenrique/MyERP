@@ -1,14 +1,12 @@
 package lemos.bruno.myerp.domain.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.UUID;
 
 @Table(name = "supplier")
@@ -32,6 +30,10 @@ public class Supplier {
     //endereço do fornecedor
     private String phone;
     //telefone do fornecedor
+
+
+    @OneToMany(mappedBy = "category")
+    private List<Product> products;
 
 
     public UUID getId() {
